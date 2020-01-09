@@ -1,13 +1,16 @@
-import React from 'react';
-import HorizontalLinearStepper from './components/stepper';
-import StepperReusable from './components/StepperReusable';
+import React from 'react'; 
 import StepsForm from './components/StepsForms';
+import SignIn from './components/SignIn';
+import {Switch,BrowserRouter as Router,Route} from 'react-router-dom';
 
 function App() {
   const arr=["leer libros","comer"];
   return (
     <div className="App">
-      <StepsForm/>
+      <Router>
+        <Route path="/user" exact component={StepsForm}/>
+        <Route path="/" component={SignIn}/>
+      </Router>
     </div>
   );
 }

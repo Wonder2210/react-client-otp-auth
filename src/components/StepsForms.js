@@ -4,15 +4,15 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import {Paper} from '@material-ui/core';
-import UserForm from './UserForm';
-import SkillsForm from './SkillsForm'
-import HomeForm from './HomeForm';
+import PasswordForm from './PasswordForm';
+import SuccessLogin from './SuccessLogin';
+import EmailForm from './EmailForm';
 import {makeStyles} from '@material-ui/core/styles';
 
-const getSteps = () => ["User info", "Home info", "Skills info"];
+const getSteps = () => ["Email", "Password", "Login info"];
 
 const forms = (props, index) => {
-  const forms = [(<UserForm {...props}/>), (<HomeForm {...props}/>), (<SkillsForm {...props}/>)];
+  const forms = [  (<EmailForm {...props}/>),( <PasswordForm {...props}/>), (<SuccessLogin {...props}/>)];
 
   return forms[index];
 }
@@ -47,10 +47,13 @@ const StepsForms = ({}) => {
 
   const styles = useStyles();
 
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(2);
+  const [email, setEmail] = useState(0);
   const steps = getSteps();
-  const nextStep = () => {
+  const nextStep = (email='') => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
+
+    if(email) setEmail(email);
   }
 
   const backStep = () => {
@@ -75,7 +78,9 @@ const StepsForms = ({}) => {
         forms({
           next: nextStep,
           current: activeStep,
-          back: backStep
+          back: backStep,
+          email:email,
+          setEmail:setEmail,
         }, activeStep)
       }
     </div>
