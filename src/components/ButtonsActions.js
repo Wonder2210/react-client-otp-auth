@@ -22,7 +22,7 @@ const ButtonsActions = ({next,current,back,form}) => {
             variant="contained"
             color="primary"
             onClick={back}
-            disabled={current==0}
+            disabled={current===0}
           > &laquo; Back </Button>
           <Button
 

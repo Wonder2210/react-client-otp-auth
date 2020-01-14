@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import {TextField} from '@material-ui/core';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Check from '@material-ui/icons/Check';
@@ -17,6 +16,8 @@ const SuccessLogin =({email})=>{
       <Typography variant="h5" align="center" className={styles.root}>
         Success Full login ! <Check/>
       </Typography>
+
+
   </div>);
 }
 

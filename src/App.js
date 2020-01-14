@@ -1,15 +1,14 @@
-import React from 'react'; 
+import React from 'react';
 import StepsForm from './components/StepsForms';
-import SignIn from './components/SignIn';
-import {Switch,BrowserRouter as Router,Route} from 'react-router-dom';
+import {SignIn} from './components/SignIn';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
 
 function App() {
-  const arr=["leer libros","comer"];
   return (
     <div className="App">
       <Router>
-        <Route path="/user" exact component={StepsForm}/>
-        <Route path="/" component={SignIn}/>
+        <Route path="/login" exact component={StepsForm}/>
+        <Route exact path="/" component={SignIn}/>
       </Router>
     </div>
   );

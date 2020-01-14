@@ -1,8 +1,7 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState} from 'react';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
 import {Paper} from '@material-ui/core';
 import PasswordForm from './PasswordForm';
 import SuccessLogin from './SuccessLogin';
@@ -16,7 +15,6 @@ const forms = (props, index) => {
 
   return forms[index];
 }
-
 const useStyles = makeStyles({
   paper: {
     width: '45%',
@@ -43,25 +41,25 @@ const useStyles = makeStyles({
     }
   }
 })
-const StepsForms = ({}) => {
+const StepsForms = () => {
+  const [activeStep, setActiveStep] = useState(0);
+  const [email, setEmail] = useState({ email:''});
 
   const styles = useStyles();
 
-  const [activeStep, setActiveStep] = useState(2);
-  const [email, setEmail] = useState(0);
   const steps = getSteps();
-  const nextStep = (email='') => {
+  const nextStep = () => {
+    console.log("here");
     setActiveStep(prevActiveStep => prevActiveStep + 1);
 
-    if(email) setEmail(email);
   }
-
   const backStep = () => {
     setActiveStep(prevActiveStep => (
       prevActiveStep >= 1
       ? prevActiveStep - 1
       : prevActiveStep));
   }
+
 
   return (<Paper className={styles.paper}>
     <Stepper activeStep={activeStep} className={styles.stepper}>
