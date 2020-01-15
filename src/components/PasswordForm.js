@@ -23,8 +23,10 @@ const PasswordForm =({next,back,current,email})=>{
   const submit=async ()=>{
     setRequest({error:false,loading:true});
     try {
-    const {data} = await  http.post('/log_sms',{
-      email:value
+    const {data} = await http.post('/login',{
+      email:email.email,
+      token:value
+
     });
     localStorage.setItem('token',data.token);
     next();
