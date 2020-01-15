@@ -1,22 +1,20 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState} from 'react';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
 import {Paper} from '@material-ui/core';
-import UserForm from './UserForm';
-import SkillsForm from './SkillsForm'
-import HomeForm from './HomeForm';
+import PasswordForm from './PasswordForm';
+import SuccessLogin from './SuccessLogin';
+import EmailForm from './EmailForm';
 import {makeStyles} from '@material-ui/core/styles';
 
-const getSteps = () => ["User info", "Home info", "Skills info"];
+const getSteps = () => ["Email", "Password", "Login info"];
 
 const forms = (props, index) => {
-  const forms = [(<UserForm {...props}/>), (<HomeForm {...props}/>), (<SkillsForm {...props}/>)];
+  const forms = [  (<EmailForm {...props}/>),( <PasswordForm {...props}/>), (<SuccessLogin {...props}/>)];
 
   return forms[index];
 }
-
 const useStyles = makeStyles({
   paper: {
     width: '45%',
@@ -43,22 +41,25 @@ const useStyles = makeStyles({
     }
   }
 })
-const StepsForms = ({}) => {
+const StepsForms = () => {
+  const [activeStep, setActiveStep] = useState(0);
+  const [email, setEmail] = useState({ email:''});
 
   const styles = useStyles();
 
-  const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
   const nextStep = () => {
+    console.log("here");
     setActiveStep(prevActiveStep => prevActiveStep + 1);
-  }
 
+  }
   const backStep = () => {
     setActiveStep(prevActiveStep => (
       prevActiveStep >= 1
       ? prevActiveStep - 1
       : prevActiveStep));
   }
+
 
   return (<Paper className={styles.paper}>
     <Stepper activeStep={activeStep} className={styles.stepper}>
@@ -75,7 +76,9 @@ const StepsForms = ({}) => {
         forms({
           next: nextStep,
           current: activeStep,
-          back: backStep
+          back: backStep,
+          email:email,
+          setEmail:setEmail,
         }, activeStep)
       }
     </div>
